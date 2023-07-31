@@ -1,7 +1,7 @@
 import React from "react";
-import calculateWinner from "../service/calculateWinner";
-import createSquare from "./createSquare";
-import handleClick from "./handleClick";
+import calculateWinner from "../../service/calculateWinner";
+import createSquare from "../squareComponent/createSquare";
+import handleClick from "../handleClick";
 
 
 let squaresByIndexes = new Array();

@@ -1,5 +1,5 @@
 import React from "react";
-import calculateWinner from '../service/calculateWinner';
+import calculateWinner from '../../service/calculateWinner';
 import createBoardRows from "./createBoardRows";
 
 function Board({xIsNext, squares, onPlay, setLastMoveRowIndex, setLastMoveColIndex }) {

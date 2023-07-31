@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import React from 'react';
-import historyOrder from './components/historyOrder';
-import Board from './components/board';
+import historyOrder from './components/historyComponent/historyOrder';
+import Board from './components/boardComponent/board';
 import jumpTo from './components/jumpTo';
 
 let historicMovesIndexes = new Array();
