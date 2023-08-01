@@ -1,5 +1,5 @@
 import React from "react";
-import calculateWinner from "../service/calculateWinner";
+import calculateWinner from "./calculateWinner";
 
 function handleClick(i,onPlay, setLastMoveRowIndex,setLastMoveColIndex,squares,squaresByIndexes, xIsNext,history, currentMove,setHistory,setCurrentMove) {
 
