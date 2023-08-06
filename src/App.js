@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import React from 'react';
-import historyOrder from './components/historyComponent/historyOrder';
+import HistoryOrder from './components/historyComponent/historyOrder';
 import Board from './components/boardComponent/board';
-import jumpTo from './service/jumpTo';
+import { GameSettingContext } from './gameContext';
+import movesList from './components/movesList';
+import setDescriptionForMovesList from './service/setDescriptionForMovesList';
 
 let historicMovesIndexes = new Array();
 
@@ -15,36 +17,14 @@ export default function Game() {
   const xIsNext = currentMove % 2 === 0;
   const currentSquares = history[currentMove];
 
-  function handlePlay(nextSquares) {
-    const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
-    setHistory(nextHistory);
-    setCurrentMove(nextHistory.length - 1);
-  }
+  const gameSettingValues = {
+    history, setHistory, currentMove, setCurrentMove,setLastMoveRowIndex, setLastMoveColIndex
+  };
 
   let moves = history.map((squares, move) => {
-    let description;
-    if (move === currentMove) {
-      let historicMoveIndex = {
-        lastMoveColIndex: lastMoveColIndex,
-        lastMoveRowIndex: lastMoveRowIndex
-      };
-      historicMovesIndexes.splice(move, 0, historicMoveIndex);
-      description = 'You are now at move #' + (move + 1) + " at " + lastMoveRowIndex + "," + lastMoveColIndex;
-    }
-    else if (move > 0) {
-      description = 'Go to move #' + (move + 1) + " at " + historicMovesIndexes[move].lastMoveRowIndex + "," + historicMovesIndexes[move].lastMoveColIndex;
-    } else {
-      description = 'Go to game start';
-    }
+    let description = setDescriptionForMovesList(move,currentMove, lastMoveColIndex,lastMoveRowIndex, historicMovesIndexes, description)
     return (
-      <React.Fragment>
-        <li key={move}>
-          {move === currentMove &&
-            <p>{description}</p>}
-          {move !== currentMove &&
-            <button onClick={() => jumpTo(move, setCurrentMove)}>{description}</button>}
-        </li>
-      </React.Fragment>
+      movesList(move, currentMove, description,setCurrentMove)
     );
   });
 
@@ -52,15 +32,20 @@ export default function Game() {
     moves.reverse();
   }
 
-
   return (
     <div className="game">
       <div className="game-board">
-        <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} setLastMoveRowIndex={setLastMoveRowIndex} setLastMoveColIndex={setLastMoveColIndex} />
+        <GameSettingContext.Provider value={gameSettingValues}>
+          <Board xIsNext={xIsNext} squares={currentSquares}/>
+        </GameSettingContext.Provider>
       </div>
       <div className="game-info">
-        <ol>{moves}</ol>
-        <ol>{historyOrder({historyDirection, setHistoryDirection})}</ol>
+        <ol>
+          {moves}
+        </ol>
+        <ol>
+          <HistoryOrder historyDirection = {historyDirection} setHistoryDirection = {setHistoryDirection} />
+          </ol>
       </div>
     </div>
   );

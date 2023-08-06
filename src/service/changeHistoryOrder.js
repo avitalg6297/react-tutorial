@@ -1,5 +1,3 @@
-import React from "react";
-
 function changeHistoryOrder(historyDirection, setHistoryDirection) {
     if (historyDirection === 0) {
       setHistoryDirection(1);

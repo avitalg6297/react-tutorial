@@ -1,13 +1,14 @@
 import React from "react";
 import changeHistoryOrder from "../../service/changeHistoryOrder";
 
-function historyOrder(historyDirection, setHistoryDirection) {
+function HistoryOrder({historyDirection, setHistoryDirection}) {
     let message = "sort history in other direction";
+
     return (
-      < button className="historyOrder" onClick={() => changeHistoryOrder({historyDirection, setHistoryDirection})} >
+      < button className="historyOrder" onClick={() => changeHistoryOrder(historyDirection, setHistoryDirection)} >
         {message}
       </button >
     );
   }
 
-  export default historyOrder;
+  export default HistoryOrder;

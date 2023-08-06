@@ -1,8 +1,8 @@
 import React from "react";
 import calculateWinner from '../../service/calculateWinner';
-import createBoardRows from "./createBoardRows";
+import CreateBoardRows from "./createBoardRows";
 
-function Board({xIsNext, squares, onPlay, setLastMoveRowIndex, setLastMoveColIndex }) {
+function Board({xIsNext, squares}) {
 
   const winner = calculateWinner(squares).winner;
   const draw = calculateWinner(squares).draw;
@@ -18,7 +18,7 @@ function Board({xIsNext, squares, onPlay, setLastMoveRowIndex, setLastMoveColInd
   return (
     <React.Fragment>
       <div className="status">{status}</div>
-      {createBoardRows(3,squares, xIsNext, onPlay, setLastMoveRowIndex, setLastMoveColIndex)}
+      {CreateBoardRows(3,squares, xIsNext)}
     </React.Fragment>
   );
 }

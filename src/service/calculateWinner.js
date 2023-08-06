@@ -1,4 +1,3 @@
-
 function calculateWinner(squares) {
     let isDraw = true;
     const lines = [

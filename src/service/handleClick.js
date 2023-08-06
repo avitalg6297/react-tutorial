@@ -1,7 +1,7 @@
-import React from "react";
 import calculateWinner from "./calculateWinner";
+import handlePlay from "./handlePlay";
 
-function handleClick(i,onPlay, setLastMoveRowIndex,setLastMoveColIndex,squares,squaresByIndexes, xIsNext,history, currentMove,setHistory,setCurrentMove) {
+function handleClick(i, setLastMoveRowIndex,setLastMoveColIndex,squares,squaresByIndexes, xIsNext, history, setHistory, currentMove, setCurrentMove) {
 
     setLastMoveColIndex(squaresByIndexes[i].col);
     setLastMoveRowIndex(squaresByIndexes[i].row);
@@ -14,7 +14,7 @@ function handleClick(i,onPlay, setLastMoveRowIndex,setLastMoveColIndex,squares,s
     } else {
       nextSquares[i] = 'O';
     }
-    onPlay(nextSquares, history, currentMove,setHistory,setCurrentMove);
+    handlePlay(nextSquares,  history, setHistory, currentMove, setCurrentMove);
   }
 
   export default handleClick;

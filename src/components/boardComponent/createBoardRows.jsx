@@ -1,12 +1,13 @@
 import React from "react";
 import calculateWinner from "../../service/calculateWinner";
-import createSquare from "../squareComponent/createSquare";
-import handleClick from "../../service/handleClick";
-
+import CreateSquare from "../squareComponent/createSquare";
+import { useContext } from "react";
+import { GameSettingContext } from "../../gameContext";
 
 let squaresByIndexes = new Array();
 
-function createBoardRows(size, squares, xIsNext, onPlay, setLastMoveRowIndex, setLastMoveColIndex) {
+function CreateBoardRows(size, squares, xIsNext) {
+    const {setLastMoveRowIndex, setLastMoveColIndex} = useContext(GameSettingContext);
     const winningSquares = calculateWinner(squares).lines;
     const board = [];
     for (let i = 0; i < size; i++) {
@@ -22,9 +23,9 @@ function createBoardRows(size, squares, xIsNext, onPlay, setLastMoveRowIndex, se
 
         squaresByIndexes.push(squareByIndex);
         if (winningSquares != undefined && winningSquares.includes(squareNumber)) {
-          row.push(createSquare(i * size + j, true, handleClick,onPlay, setLastMoveRowIndex,setLastMoveColIndex,squares,squaresByIndexes, xIsNext));
+          row.push(CreateSquare(i * size + j, true, squares,squaresByIndexes, xIsNext));
         } else {
-          row.push(createSquare(i * size + j, false, handleClick,onPlay, setLastMoveRowIndex,setLastMoveColIndex,squares,squaresByIndexes, xIsNext));
+          row.push(CreateSquare(i * size + j, false, squares,squaresByIndexes, xIsNext));
         }
 
       }
@@ -37,4 +38,4 @@ function createBoardRows(size, squares, xIsNext, onPlay, setLastMoveRowIndex, se
     return board;
   }
 
-  export default createBoardRows;
+  export default CreateBoardRows;
