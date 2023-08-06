@@ -1,13 +1,13 @@
 import React from "react";
 import Square from "./square";
-import { useContext } from "react";
-import { GameSettingContext } from "../../gameContext";
-import handleClick from "../../service/handleClick";
+import { useHandleClick } from "../../service/useHandleClick";
 
 function CreateSquare(squareNumber,isWinningSquare,squares,squaresByIndexes, xIsNext) {
-  const { history, setHistory, currentMove, setCurrentMove, setLastMoveRowIndex, setLastMoveColIndex } = useContext(GameSettingContext);
+
+   let {handleClick} = useHandleClick();
+
   return (
-      <Square value={squares[squareNumber]} onSquareClick={() => handleClick(squareNumber, setLastMoveRowIndex,setLastMoveColIndex,squares,squaresByIndexes, xIsNext, history, setHistory, currentMove, setCurrentMove)} isWinningSquare={isWinningSquare} />
+      <Square value={squares[squareNumber]} onSquareClick={() => handleClick(squareNumber,squares,squaresByIndexes, xIsNext)} isWinningSquare={isWinningSquare} />
     )
   }
 
