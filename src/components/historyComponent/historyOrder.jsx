@@ -2,6 +2,7 @@ import React from "react";
 import changeHistoryOrder from "../../service/changeHistoryOrder";
 
 function HistoryOrder({historyDirection, setHistoryDirection}) {
+    //const
     let message = "sort history in other direction";
 
     return (
