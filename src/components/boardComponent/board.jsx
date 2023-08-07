@@ -3,7 +3,8 @@ import calculateWinner from '../../service/calculateWinner';
 import CreateBoardRows from "./createBoardRows";
 
 function Board({xIsNext, squares}) {
-
+  //useMemo
+  //condititnal rendering
   const winner = calculateWinner(squares).winner;
   const draw = calculateWinner(squares).draw;
   let status;
