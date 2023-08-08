@@ -3,7 +3,7 @@ import changeHistoryOrder from "../../service/changeHistoryOrder";
 
 function HistoryOrder({historyDirection, setHistoryDirection}) {
     //const
-    let message = "sort history in other direction";
+    const message = "sort history in other direction";
 
     return (
       < button className="historyOrder" onClick={() => changeHistoryOrder(historyDirection, setHistoryDirection)} >

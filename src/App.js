@@ -9,11 +9,17 @@ import setDescriptionForMovesList from './service/setDescriptionForMovesList';
 let historicMovesIndexes = new Array();
 
 export default function Game() {
+
+  const historyOrderDirection = {
+    ascending: 0,
+    descending: 1
+  }
+
   const [lastMoveRowIndex, setLastMoveRowIndex] = useState(0);
   const [lastMoveColIndex, setLastMoveColIndex] = useState(0);
   const [history, setHistory] = useState([Array(9).fill(null)]);
   const [currentMove, setCurrentMove] = useState(0);
-  const [historyDirection, setHistoryDirection] = useState(0);
+  const [historyDirection, setHistoryDirection] = useState(historyOrderDirection.ascending);
   const xIsNext = currentMove % 2 === 0;
   const currentSquares = history[currentMove];
 
@@ -27,8 +33,9 @@ export default function Game() {
       movesList(move, currentMove, description,setCurrentMove)
     );
   });
+  
 
-  if (historyDirection === 1) {
+  if (historyDirection === historyOrderDirection.descending) {
     moves.reverse();
   }
 

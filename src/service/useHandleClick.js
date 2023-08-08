@@ -9,7 +9,7 @@ export const useHandleClick = () => {
     const handleClick = (i,squares,squaresByIndexes, xIsNext) => {
         setLastMoveColIndex(squaresByIndexes[i].col);
         setLastMoveRowIndex(squaresByIndexes[i].row);
-        if (calculateWinner(squares).winner || squares[i]) {
+        if (calculateWinner(squares).result == 'winner' || squares[i]) {
             return;
         }
         const nextSquares = squares.slice();
@@ -23,4 +23,5 @@ export const useHandleClick = () => {
     }
     return {handleClick};
 };
+
 

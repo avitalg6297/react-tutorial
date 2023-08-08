@@ -1,13 +1,10 @@
 import React from "react";
 import calculateWinner from "../../service/calculateWinner";
 import CreateSquare from "../squareComponent/createSquare";
-import { useContext } from "react";
-import { GameSettingContext } from "../../gameContext";
 
 let squaresByIndexes = new Array();
 
 function CreateBoardRows(size, squares, xIsNext) {
-    const {setLastMoveRowIndex, setLastMoveColIndex} = useContext(GameSettingContext);
     const winningSquares = calculateWinner(squares).lines;
     const board = [];
     for (let i = 0; i < size; i++) {
@@ -23,7 +20,7 @@ function CreateBoardRows(size, squares, xIsNext) {
 
         squaresByIndexes.push(squareByIndex);
         if (winningSquares != undefined && winningSquares.includes(squareNumber)) {
-          row.push(CreateSquare(i * size + j, true, squares,squaresByIndexes, xIsNext));
+          row.push  (CreateSquare(i * size + j, true, squares,squaresByIndexes, xIsNext));
         } else {
           row.push(CreateSquare(i * size + j, false, squares,squaresByIndexes, xIsNext));
         }

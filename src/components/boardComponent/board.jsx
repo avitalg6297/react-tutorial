@@ -1,20 +1,12 @@
 import React from "react";
-import calculateWinner from '../../service/calculateWinner';
 import CreateBoardRows from "./createBoardRows";
+import calculateGameStatus from "../../service/calculateGameStatus";
 
 function Board({xIsNext, squares}) {
-  //useMemo
-  //condititnal rendering
-  const winner = calculateWinner(squares).winner;
-  const draw = calculateWinner(squares).draw;
-  let status;
-  if (winner) {
-    status = 'Winner: ' + winner;
-  } else if (draw) {
-    status = 'Draw';
-  } else {
-    status = 'Next player: ' + (xIsNext ? 'X' : 'O');
-  }
+  //useMemo - why?
+  //condititnal rendering - why?
+  
+  let status = calculateGameStatus(xIsNext, squares)
 
   return (
     <React.Fragment>
