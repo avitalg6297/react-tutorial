@@ -4,10 +4,9 @@ import calculateWinner from "./calculateWinner";
 
 function calculateGameStatus(xIsNext, squares){
 
-    let statusMessage
     let stausMessageDictionary = {'winner': "Winner: ", 'draw': "Draw", 'nextPlayer': "Next player: "};
 
-    const gameCalculator = useMemo(() => calculateWinner(squares,xIsNext), [squares]);
+    const gameCalculator = calculateWinner(squares,xIsNext);
    
       return stausMessageDictionary[gameCalculator.result] + gameCalculator.playerSymbol;
 }

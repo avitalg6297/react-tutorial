@@ -1,15 +1,48 @@
 import React from "react";
 import changeHistoryOrder from "../../service/changeHistoryOrder";
+import { GameSettingContext } from "../../gameContext";
+import { useContext } from "react";
+import movesList from "../movesList";
+import setDescriptionForMovesList from "../../service/setDescriptionForMovesList";
 
-function HistoryOrder({historyDirection, setHistoryDirection}) {
-    //const
-    const message = "sort history in other direction";
+let historicMovesIndexes = new Array();
 
-    return (
-      < button className="historyOrder" onClick={() => changeHistoryOrder(historyDirection, setHistoryDirection)} >
-        {message}
-      </button >
-    );
+function HistoryOrder({ historyDirection, setHistoryDirection }) {
+
+  const historyOrderDirection = {
+    ascending: 0,
+    descending: 1
   }
 
-  export default HistoryOrder;
+  const message = "sort history in other direction";
+
+  const {  history,  currentMove, setCurrentMove,lastMoveRowIndex,lastMoveColIndex} = useContext(GameSettingContext);
+
+  let moves = history.map((_, move) => {
+    let description = setDescriptionForMovesList(move, currentMove, lastMoveColIndex, lastMoveRowIndex, historicMovesIndexes, description)
+    return (
+      movesList(move, currentMove, description, setCurrentMove)
+    );
+  });
+
+
+  if (historyDirection === historyOrderDirection.descending) {
+    moves.reverse();
+  }
+
+
+  return (
+    <div className="game-info">
+      <ol>
+        {moves}
+      </ol>
+      <ol>
+        < button className="historyOrder" onClick={() => changeHistoryOrder(historyDirection, setHistoryDirection)} >
+          {message}
+        </button >
+      </ol>
+    </div>
+  );
+}
+
+export default HistoryOrder;

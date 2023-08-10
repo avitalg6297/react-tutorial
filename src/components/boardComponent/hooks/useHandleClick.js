@@ -1,7 +1,7 @@
 import { useContext } from "react"
-import { GameSettingContext } from "../gameContext"
-import calculateWinner from "./calculateWinner";
-import handlePlay from "./handlePlay";
+import { GameSettingContext } from "../../../gameContext";
+import calculateWinner from "../../../service/calculateWinner";
+import handlePlay from  "../../../service/handlePlay";
 
 export const useHandleClick = () => {
     const { history, setHistory, currentMove, setCurrentMove,setLastMoveRowIndex, setLastMoveColIndex} = useContext(GameSettingContext);
