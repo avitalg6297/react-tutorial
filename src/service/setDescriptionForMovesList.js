@@ -9,6 +9,7 @@ function setDescriptionForMovesList(
 ) {
   let row = lastMoveIndex.row;
   let col = lastMoveIndex.col;
+
   if (move === currentMove) {
     fillhistoricMovesIndexes(lastMoveIndex, historicMovesIndexes, move);
     description =
@@ -18,9 +19,9 @@ function setDescriptionForMovesList(
       "Go to move #" +
       (move + 1) +
       " at " +
-      historicMovesIndexes[move].row +
+      historicMovesIndexes[move].lastMoveRowIndex +
       "," +
-      historicMovesIndexes[move].col;
+      historicMovesIndexes[move].lastMoveColIndex;
   } else {
     description = "Go to game start";
   }
