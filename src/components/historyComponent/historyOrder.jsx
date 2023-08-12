@@ -15,20 +15,14 @@ function HistoryOrder({ historyDirection, setHistoryDirection }) {
 
   const message = "sort history in other direction";
 
-  const {
-    history,
-    currentMove,
-    setCurrentMove,
-    lastMoveRowIndex,
-    lastMoveColIndex,
-  } = useContext(GameSettingContext);
+  const { history, currentMove, setCurrentMove, lastMoveIndex } =
+    useContext(GameSettingContext);
 
   let moves = history.map((_, move) => {
     let description = setDescriptionForMovesList(
       move,
       currentMove,
-      lastMoveColIndex,
-      lastMoveRowIndex,
+      lastMoveIndex,
       historicMovesIndexes,
       description
     );

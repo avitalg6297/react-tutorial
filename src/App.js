@@ -10,11 +10,7 @@ export default function Game() {
     descending: 1,
   };
 
-  // const [lastMoveIndex, setLastMoveIndex] = useState({ row: 0, col: 0 });
-  // setLastMoveIndex({ row: 3, ...lastMoveIndex });
-
-  const [lastMoveRowIndex, setLastMoveRowIndex] = useState(0);
-  const [lastMoveColIndex, setLastMoveColIndex] = useState(0);
+  const [lastMoveIndex, setLastMoveIndex] = useState({ row: 0, col: 0 });
   const [history, setHistory] = useState([Array(9).fill(null)]);
   const [currentMove, setCurrentMove] = useState(0);
   const [historyDirection, setHistoryDirection] = useState(
@@ -28,10 +24,8 @@ export default function Game() {
     setHistory,
     currentMove,
     setCurrentMove,
-    setLastMoveRowIndex,
-    setLastMoveColIndex,
-    lastMoveRowIndex,
-    lastMoveColIndex,
+    lastMoveIndex,
+    setLastMoveIndex,
   };
 
   return (

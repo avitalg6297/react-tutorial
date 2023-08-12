@@ -3,33 +3,24 @@ import fillhistoricMovesIndexes from "./fillHistoricMovesIndexesArray";
 function setDescriptionForMovesList(
   move,
   currentMove,
-  lastMoveColIndex,
-  lastMoveRowIndex,
+  lastMoveIndex,
   historicMovesIndexes,
   description
 ) {
+  let row = lastMoveIndex.row;
+  let col = lastMoveIndex.col;
   if (move === currentMove) {
-    fillhistoricMovesIndexes(
-      lastMoveColIndex,
-      lastMoveRowIndex,
-      historicMovesIndexes,
-      move
-    );
+    fillhistoricMovesIndexes(lastMoveIndex, historicMovesIndexes, move);
     description =
-      "You are now at move #" +
-      (move + 1) +
-      " at " +
-      lastMoveRowIndex +
-      "," +
-      lastMoveColIndex;
+      "You are now at move #" + (move + 1) + " at " + row + "," + col;
   } else if (move > 0) {
     description =
       "Go to move #" +
       (move + 1) +
       " at " +
-      historicMovesIndexes[move].lastMoveRowIndex +
+      historicMovesIndexes[move].row +
       "," +
-      historicMovesIndexes[move].lastMoveColIndex;
+      historicMovesIndexes[move].col;
   } else {
     description = "Go to game start";
   }
