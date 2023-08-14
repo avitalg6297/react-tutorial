@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import calculateWinner from "../../service/calculateWinner";
-import Square from "../squareComponent/square";
+import Square from "./squareComponent/square";
 import { useHandleClick } from "./hooks/useHandleClick";
 import { useMemo } from "react";
 import calculateGameStatus from "../../service/calculateGameStatus";

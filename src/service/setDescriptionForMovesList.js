@@ -5,10 +5,10 @@ function setDescriptionForMovesList(
   currentMove,
   lastMoveIndex,
   historicMovesIndexes,
-  description
 ) {
   let row = lastMoveIndex.row;
   let col = lastMoveIndex.col;
+  let description;
 
   if (move === currentMove) {
     fillhistoricMovesIndexes(lastMoveIndex, historicMovesIndexes, move);

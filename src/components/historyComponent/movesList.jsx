@@ -1,5 +1,5 @@
 import React from "react";
-import jumpTo from "../service/jumpTo";
+import jumpTo from "../../service/jumpTo";
 
 function movesList(move, currentMove, description,setCurrentMove){
     return (

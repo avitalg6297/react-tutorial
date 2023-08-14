@@ -2,7 +2,7 @@ import React from "react";
 import changeHistoryOrder from "../../service/changeHistoryOrder";
 import { GameSettingContext } from "../../gameContext";
 import { useContext } from "react";
-import movesList from "../movesList";
+import movesList from "./movesList";
 import setDescriptionForMovesList from "../../service/setDescriptionForMovesList";
 
 let historicMovesIndexes = new Array();
@@ -18,16 +18,16 @@ function HistoryOrder({ historyDirection, setHistoryDirection }) {
   const { history, currentMove, setCurrentMove, lastMoveIndex } =
     useContext(GameSettingContext);
 
-  let moves = history.map((_, move) => {
-    let description = setDescriptionForMovesList(
-      move,
-      currentMove,
-      lastMoveIndex,
-      historicMovesIndexes,
-      description
-    );
-    return movesList(move, currentMove, description, setCurrentMove);
-  });
+  // let moves = history.map((_, move) => {
+  //   let description = setDescriptionForMovesList(
+  //     move,
+  //     currentMove,
+  //     lastMoveIndex,
+  //     historicMovesIndexes,
+  //     description
+  //   );
+  //   return <movesList move currentMove description setCurrentMove />
+  // });
 
   if (historyDirection === historyOrderDirection.descending) {
     moves.reverse();
@@ -35,7 +35,16 @@ function HistoryOrder({ historyDirection, setHistoryDirection }) {
 
   return (
     <div className="game-info">
-      <ol>{moves}</ol>
+      <ol>{history.map((_, move) => {
+        let description = setDescriptionForMovesList(
+          move,
+          currentMove,
+          lastMoveIndex,
+          historicMovesIndexes,
+          description
+        );
+        <movesList move currentMove description setCurrentMove />
+      })}</ol>
       <ol>
         <button
           className="historyOrder"
